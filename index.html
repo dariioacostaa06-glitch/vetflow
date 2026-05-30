@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>VetFlow — La Clínica Veterinaria de tu Mascota</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+*{font-family:'Inter',sans-serif}body{background:#080a08;color:#f0f0f0}
+.glass{background:rgba(255,255,255,0.04);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08)}
+.accent{color:#22c55e}.accent-bg{background:linear-gradient(135deg,#22c55e,#16a34a)}
+.btn-primary{background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-weight:700;transition:all .2s;border-radius:12px;padding:14px 28px;border:none}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(34,197,94,.4)}
+.card{background:#0e110e;border:1px solid #1a2a1a;border-radius:20px;transition:all .3s}
+input,select,textarea{background:#0e110e;border:1px solid #1a2a1a;color:#f0f0f0;border-radius:10px;padding:12px 16px;width:100%;outline:none;transition:border .2s}
+input:focus,select:focus,textarea:focus{border-color:#22c55e}select option{background:#0e110e}
+.pet-tab{padding:10px 20px;border:1px solid #1a2a1a;border-radius:10px;cursor:pointer;font-weight:600;font-size:13px;transition:all .2s}
+.pet-tab.active{background:rgba(34,197,94,.15);border-color:#22c55e;color:#22c55e}
+.vaccine-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #1a2a1a}
+.vaccine-row:last-child{border:none}
+.vac-ok{background:#14532d;color:#4ade80;border-radius:20px;font-size:11px;font-weight:700;padding:3px 10px}
+.vac-due{background:#7c2d12;color:#fb923c;border-radius:20px;font-size:11px;font-weight:700;padding:3px 10px}
+.vac-soon{background:#713f12;color:#fbbf24;border-radius:20px;font-size:11px;font-weight:700;padding:3px 10px}
+.service-card{background:#0e110e;border:1px solid #1a2a1a;border-radius:16px;padding:20px;transition:all .3s;text-align:center}
+.service-card:hover{border-color:#22c55e40;transform:translateY(-4px)}
+</style>
+</head>
+<body>
+<nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 accent-bg rounded-lg flex items-center justify-center font-black text-white">🐾</div>
+      <span class="font-bold text-lg">VetFlow</span>
+    </div>
+    <div class="hidden md:flex gap-8 text-sm text-gray-400">
+      <a href="#historial" class="hover:text-white transition">Mi mascota</a>
+      <a href="#cita" class="hover:text-white transition">Pedir cita</a>
+      <a href="#servicios" class="hover:text-white transition">Servicios</a>
+    </div>
+    <a href="#cita" class="btn-primary text-sm py-2 px-5">Urgencia 24h</a>
+  </div>
+</nav>
+
+<section class="relative min-h-[90vh] flex items-center overflow-hidden">
+  <div class="absolute inset-0"><img src="img/hero.webp" class="w-full h-full object-cover opacity-25"/><div class="absolute inset-0 bg-gradient-to-r from-[#080a08] via-[#080a08]/85 to-transparent"></div></div>
+  <div class="relative max-w-6xl mx-auto px-6 pt-24">
+    <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-sm text-green-400 mb-6">
+      <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>Veterinario disponible ahora · Urgencias 24h
+    </div>
+    <h1 class="text-5xl md:text-7xl font-black leading-tight">Tu mascota<br/><span class="accent">en las mejores manos.</span></h1>
+    <p class="text-gray-400 mt-6 text-xl max-w-xl">Historial médico digital, recordatorios de vacunas y citas en segundos. Todo lo que necesitas para cuidar a quien más quieres.</p>
+    <div class="flex flex-wrap gap-4 mt-10">
+      <a href="#historial" class="btn-primary text-base">Ver historial de mi mascota →</a>
+      <a href="#cita" class="glass text-white font-semibold rounded-xl px-7 py-4 border border-white/10 hover:border-green-500/30 transition text-sm">Pedir cita online</a>
+    </div>
+    <div class="flex flex-wrap gap-4 mt-10">
+      <div class="glass rounded-xl px-5 py-3 text-sm"><span class="font-bold">3 veterinarios</span> <span class="text-gray-400">especializados</span></div>
+      <div class="glass rounded-xl px-5 py-3 text-sm"><span class="font-bold accent">24/7</span> <span class="text-gray-400">urgencias</span></div>
+      <div class="glass rounded-xl px-5 py-3 text-sm">⭐ <span class="font-bold">4.9/5</span> <span class="text-gray-400">· 620 clientes</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HISTORIAL DIGITAL -->
+<section id="historial" class="max-w-6xl mx-auto px-6 py-24">
+  <div class="grid md:grid-cols-2 gap-10">
+    <div class="card p-8">
+      <h2 class="text-2xl font-bold mb-2">Historial de tu mascota</h2>
+      <p class="text-gray-500 text-sm mb-6">Accede al historial médico completo con tu código de cliente.</p>
+      <div class="flex gap-3 mb-6">
+        <input id="pet-code" type="text" placeholder="Código · Ej: VF-2024-LUNA" class="font-mono uppercase" oninput="this.value=this.value.toUpperCase()"/>
+        <button onclick="loadPet()" class="btn-primary py-3 px-5 text-sm whitespace-nowrap">Buscar</button>
+      </div>
+      <div id="pet-demo" class="text-center py-6 text-gray-600 text-sm">
+        Prueba con <span class="accent font-mono font-bold cursor-pointer" onclick="document.getElementById('pet-code').value='VF-2024-LUNA';loadPet()">VF-2024-LUNA</span>
+      </div>
+      <div id="pet-profile" class="hidden">
+        <div class="glass rounded-xl p-5 mb-6 flex items-center gap-4">
+          <img src="img/dog.webp" class="w-16 h-16 rounded-full object-cover border-2 border-green-500"/>
+          <div>
+            <h3 class="font-bold text-lg" id="p-name">Luna</h3>
+            <p class="text-gray-400 text-sm" id="p-breed">Golden Retriever · 3 años · Hembra</p>
+            <p class="text-xs text-gray-600 mt-1">Microchip: 724XXXXXXXXXX · Esterilizada: ✓</p>
+          </div>
+        </div>
+        <h4 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-3">Estado de vacunación</h4>
+        <div class="card p-4 mb-5">
+          <div class="vaccine-row"><div><p class="font-semibold text-sm">Rabia</p><p class="text-xs text-gray-500">Última: Mar 2024</p></div><span class="vac-ok">Al día</span></div>
+          <div class="vaccine-row"><div><p class="font-semibold text-sm">Polivalente (DHPPi)</p><p class="text-xs text-gray-500">Última: Mar 2024</p></div><span class="vac-ok">Al día</span></div>
+          <div class="vaccine-row"><div><p class="font-semibold text-sm">Leishmaniosis</p><p class="text-xs text-gray-500">Vence: Jun 2025</p></div><span class="vac-soon">Próxima pronto</span></div>
+          <div class="vaccine-row"><div><p class="font-semibold text-sm">Bordetella</p><p class="text-xs text-gray-500">Vence: Ene 2025</p></div><span class="vac-due">Vencida</span></div>
+        </div>
+        <h4 class="font-semibold text-sm text-gray-400 uppercase tracking-wider mb-3">Últimas visitas</h4>
+        <div class="space-y-3">
+          <div class="glass rounded-xl p-4"><div class="flex justify-between text-sm"><span class="font-semibold">Revisión anual</span><span class="text-gray-500">15 Mar 2024</span></div><p class="text-xs text-gray-500 mt-1">Todo en orden. Peso: 28kg. Próxima revisión: Mar 2025.</p></div>
+          <div class="glass rounded-xl p-4"><div class="flex justify-between text-sm"><span class="font-semibold">Otitis leve</span><span class="text-gray-500">02 Ene 2024</span></div><p class="text-xs text-gray-500 mt-1">Tratamiento: gotas Otodine 10 días. Resuelta satisfactoriamente.</p></div>
+        </div>
+        <button onclick="document.getElementById('cita').scrollIntoView({behavior:'smooth'})" class="btn-primary w-full mt-5 text-sm text-center">Pedir cita para Luna</button>
+      </div>
+    </div>
+
+    <div class="space-y-5">
+      <img src="img/dog.webp" class="w-full h-64 object-cover rounded-2xl opacity-80"/>
+      <img src="img/cat.webp" class="w-full h-48 object-cover rounded-2xl opacity-80"/>
+      <div class="card p-6">
+        <h3 class="font-bold mb-3">🔔 Próximos recordatorios</h3>
+        <div class="space-y-3 text-sm">
+          <div class="flex items-center justify-between glass rounded-lg p-3"><span>💉 Bordetella · Luna</span><span class="vac-due">Vencida</span></div>
+          <div class="flex items-center justify-between glass rounded-lg p-3"><span>🐛 Desparasitación · Milo</span><span class="vac-soon">Jun 2025</span></div>
+          <div class="flex items-center justify-between glass rounded-lg p-3"><span>🩺 Revisión anual · Luna</span><span class="text-gray-500 text-xs">Mar 2025</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CITA -->
+<section id="cita" class="max-w-4xl mx-auto px-6 py-10">
+  <div class="card p-10">
+    <h2 class="text-3xl font-bold mb-2">Pedir cita <span class="accent">online</span></h2>
+    <p class="text-gray-400 mb-8">Sin esperar al teléfono. Confirmación inmediata por WhatsApp.</p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-4">
+      <input type="text" placeholder="Tu nombre"/>
+      <input type="tel" placeholder="Teléfono / WhatsApp"/>
+      <input type="text" placeholder="Nombre de tu mascota"/>
+      <select><option>Perro</option><option>Gato</option><option>Ave</option><option>Reptil</option><option>Otro</option></select>
+      <select><option>Revisión general</option><option>Vacunación</option><option>Urgencia</option><option>Desparasitación</option><option>Cirugía</option><option>Dentadura</option></select>
+      <input type="date"/>
+    </div>
+    <textarea placeholder="Describe los síntomas o motivo de la visita (opcional)" rows="3" class="mb-5"></textarea>
+    <button onclick="this.innerHTML='✅ Cita confirmada. Te avisamos por WhatsApp.';this.disabled=true;this.style.background='#14532d'" class="btn-primary w-full text-base">Confirmar cita</button>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="max-w-6xl mx-auto px-6 py-16">
+  <h2 class="text-3xl font-bold mb-8">Nuestros servicios</h2>
+  <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="service-card"><div class="text-4xl mb-3">🩺</div><h3 class="font-bold">Medicina general</h3><p class="text-gray-500 text-sm mt-2">Revisiones, diagnóstico y tratamiento integral.</p></div>
+    <div class="service-card"><div class="text-4xl mb-3">💉</div><h3 class="font-bold">Vacunación</h3><p class="text-gray-500 text-sm mt-2">Protocolos completos para perros y gatos.</p></div>
+    <div class="service-card"><div class="text-4xl mb-3">🔬</div><h3 class="font-bold">Laboratorio</h3><p class="text-gray-500 text-sm mt-2">Análisis de sangre, orina y cultivos en 24h.</p></div>
+    <div class="service-card"><div class="text-4xl mb-3">🦷</div><h3 class="font-bold">Odontología</h3><p class="text-gray-500 text-sm mt-2">Limpieza dental y extracciones bajo anestesia.</p></div>
+    <div class="service-card"><div class="text-4xl mb-3">🏨</div><h3 class="font-bold">Hospitalización</h3><p class="text-gray-500 text-sm mt-2">Cuidados 24h con monitorización constante.</p></div>
+    <div class="service-card"><div class="text-4xl mb-3">🚑</div><h3 class="font-bold">Urgencias 24h</h3><p class="text-gray-500 text-sm mt-2">Atención inmediata cualquier día del año.</p></div>
+    <div class="service-card"><div class="text-4xl mb-3">🛁</div><h3 class="font-bold">Peluquería</h3><p class="text-gray-500 text-sm mt-2">Baño, corte y arreglo para perros y gatos.</p></div>
+    <div class="service-card"><div class="text-4xl mb-3">🏪</div><h3 class="font-bold">Tienda</h3><p class="text-gray-500 text-sm mt-2">Nutrición, antiparasitarios y accesorios.</p></div>
+  </div>
+</section>
+
+<footer class="border-t border-white/5 py-8 text-center text-gray-600 text-sm">
+  <p class="font-bold text-white mb-1">VetFlow Clínica Veterinaria</p>
+  <p>Avenida Animal 34 · Lun–Vie 9:00–21:00 · Sáb 10:00–14:00 · Urgencias 24/7</p>
+  <p class="mt-2">Desarrollado por <span class="accent font-semibold">PuntoZero Solutions</span></p>
+</footer>
+<script>
+function loadPet(){
+  document.getElementById('pet-demo').classList.add('hidden');
+  document.getElementById('pet-profile').classList.remove('hidden');
+}
+</script>
+</body></html>
